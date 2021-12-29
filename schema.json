@@ -1,0 +1,495 @@
+{
+  "name": "scedU",
+  "generators": {
+    "tsbasic": {
+      "outDir": "ts/base",
+      "export": false
+    },
+    "tsmongoose": {
+      "outDir": "ts/mongoose",
+      "export": false
+    },
+    "basicdartmobx": {
+      "outDir": "lib/gen",
+      "export": true
+    },
+    "customdartmobx": {
+      "outDir": "lib/model",
+      "export": true
+    }
+  },
+  "root": {
+    "name": "Entity",
+    "id": "309e0b8b-e164-4c98-8b46-3170f1da3b14",
+    "hasDatabaseCollection": true,
+    "properties": [
+      {
+        "id": "2e1dbc14-7dca-46c5-a0c9-cd80066d10d6",
+        "name": "id",
+        "optional": false,
+        "array": false,
+        "key": true,
+        "defaultValue": null,
+        "type": "string"
+      }
+    ],
+    "children": [
+      {
+        "name": "AbstractEvent",
+        "id": "d7d64193-dcd0-491a-a3eb-5e5f4cbd9ded",
+        "hasDatabaseCollection": true,
+        "properties": [
+          {
+            "id": "8b200355-d927-43ac-aed6-9a54d77298d4",
+            "name": "name",
+            "optional": false,
+            "array": false,
+            "key": false,
+            "defaultValue": null,
+            "type": "string"
+          },
+          {
+            "id": "1f7fad8f-02b5-48a6-a79f-bcbfc6bf7682",
+            "name": "description",
+            "optional": true,
+            "array": false,
+            "key": false,
+            "defaultValue": null,
+            "type": "string"
+          },
+          {
+            "id": "6a29db1e-5afd-4551-b0f8-271ab1e0b95d",
+            "name": "location",
+            "optional": true,
+            "array": false,
+            "key": false,
+            "defaultValue": null,
+            "type": "1a3fe2bc-c877-47bc-9a3e-b7a8befe2ee3"
+          },
+          {
+            "id": "85c8c297-d8f5-4046-81f0-53cdd2d3bc64",
+            "name": "category",
+            "optional": true,
+            "array": false,
+            "key": false,
+            "defaultValue": null,
+            "type": "ca93abf1-8c49-40c0-b978-681153dd5898"
+          }
+        ],
+        "children": [
+          {
+            "name": "RecurringEvent",
+            "id": "266471c2-072d-4ec5-a01a-fd396db93e03",
+            "hasDatabaseCollection": true,
+            "properties": [
+              {
+                "id": "2193c3fb-71f9-458a-8dea-28a83611dd19",
+                "name": "times",
+                "optional": false,
+                "array": true,
+                "key": false,
+                "defaultValue": null,
+                "type": "71d22af8-ce46-44a4-ad98-01571ae6b01e"
+              }
+            ],
+            "children": []
+          },
+          {
+            "name": "Habit",
+            "id": "fdf2106b-fffd-4e53-8e3a-b0dc001e844f",
+            "hasDatabaseCollection": true,
+            "properties": [
+              {
+                "id": "0284cab7-dcad-4b1a-9fbf-8b4fe82cd33f",
+                "name": "frequencyDays",
+                "optional": false,
+                "array": false,
+                "key": false,
+                "defaultValue": null,
+                "type": "double"
+              },
+              {
+                "id": "51f9dd4e-62ca-4a38-8c60-c7fcbe1fa282",
+                "name": "goal",
+                "optional": false,
+                "array": false,
+                "key": false,
+                "defaultValue": null,
+                "type": "double"
+              }
+            ],
+            "children": []
+          },
+          {
+            "name": "Activity",
+            "id": "cded67fa-154b-45ca-bbd9-ab50fe1498fc",
+            "hasDatabaseCollection": true,
+            "properties": [
+              {
+                "id": "390b3c03-e670-4f49-a582-34bbede1f83a",
+                "name": "plannedStart",
+                "optional": false,
+                "array": false,
+                "key": false,
+                "defaultValue": null,
+                "type": "Date"
+              },
+              {
+                "id": "a4e4e519-f9f8-4316-b080-14f8fedf9dfc",
+                "name": "plannedDuration",
+                "optional": false,
+                "array": false,
+                "key": false,
+                "defaultValue": null,
+                "type": "int"
+              },
+              {
+                "id": "59c47702-5f40-47ef-9953-b483b7ce6cf0",
+                "name": "flexible",
+                "optional": false,
+                "array": false,
+                "key": false,
+                "defaultValue": null,
+                "type": "boolean"
+              },
+              {
+                "id": "4df86a81-7a67-48bc-ada4-87b49546e5d0",
+                "name": "checkedIn",
+                "optional": true,
+                "array": false,
+                "key": false,
+                "defaultValue": null,
+                "type": "Date"
+              },
+              {
+                "id": "35a7ce0b-cf87-4177-9f09-0a2843db2c22",
+                "name": "checkedOut",
+                "optional": true,
+                "array": false,
+                "key": false,
+                "defaultValue": null,
+                "type": "Date"
+              },
+              {
+                "id": "6c99f234-caab-49c4-abad-434eb0b2102f",
+                "name": "satisfaction",
+                "optional": true,
+                "array": false,
+                "key": false,
+                "defaultValue": null,
+                "type": "int"
+              },
+              {
+                "id": "fc6e2b47-a4d6-4909-90f4-778b1ab41839",
+                "name": "log",
+                "optional": true,
+                "array": false,
+                "key": false,
+                "defaultValue": null,
+                "type": "11f6659f-4e05-43d8-b62f-dce0542e76ec"
+              }
+            ],
+            "children": []
+          },
+          {
+            "name": "Project",
+            "id": "ced50ed0-3866-446e-9bbf-dfab39e84702",
+            "hasDatabaseCollection": true,
+            "properties": [
+              {
+                "id": "ab265fa1-924f-449e-bfa6-1569bac23470",
+                "name": "tasks",
+                "optional": false,
+                "array": true,
+                "key": false,
+                "defaultValue": null,
+                "type": "2982cc7d-a8a9-4fed-b1a5-b5d8c38ae981"
+              },
+              {
+                "id": "27619192-cba2-469c-acd5-dc88ed13b54f",
+                "name": "deadline",
+                "optional": true,
+                "array": false,
+                "key": false,
+                "defaultValue": null,
+                "type": "Date"
+              }
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "name": "Location",
+        "id": "1a3fe2bc-c877-47bc-9a3e-b7a8befe2ee3",
+        "hasDatabaseCollection": true,
+        "properties": [
+          {
+            "id": "b4506194-35bd-404f-96e4-002f71a95569",
+            "name": "long",
+            "optional": false,
+            "array": false,
+            "key": false,
+            "defaultValue": null,
+            "type": "double"
+          },
+          {
+            "id": "3c9ed61a-5751-4d8d-8f73-161ff92bccd7",
+            "name": "lat",
+            "optional": false,
+            "array": false,
+            "key": false,
+            "defaultValue": null,
+            "type": "double"
+          }
+        ],
+        "children": []
+      },
+      {
+        "name": "Task",
+        "id": "2982cc7d-a8a9-4fed-b1a5-b5d8c38ae981",
+        "hasDatabaseCollection": true,
+        "properties": [
+          {
+            "id": "649ab97d-d394-46b6-aaf9-c04e44463502",
+            "name": "done",
+            "optional": false,
+            "array": false,
+            "key": false,
+            "defaultValue": null,
+            "type": "boolean"
+          },
+          {
+            "id": "3242e43f-20a6-4f37-8806-be78c398979f",
+            "name": "title",
+            "optional": false,
+            "array": false,
+            "key": false,
+            "defaultValue": null,
+            "type": "string"
+          },
+          {
+            "id": "b3519f31-d82e-45c6-8174-241b6f986087",
+            "name": "description",
+            "optional": true,
+            "array": false,
+            "key": false,
+            "defaultValue": null,
+            "type": "string"
+          },
+          {
+            "id": "a3e2e8a1-c1a6-44bf-895c-7091a0f39f1a",
+            "name": "subtasks",
+            "optional": false,
+            "array": true,
+            "key": false,
+            "defaultValue": null,
+            "type": "2982cc7d-a8a9-4fed-b1a5-b5d8c38ae981"
+          }
+        ],
+        "children": []
+      },
+      {
+        "name": "Cortex",
+        "id": "ca93abf1-8c49-40c0-b978-681153dd5898",
+        "hasDatabaseCollection": true,
+        "properties": [
+          {
+            "id": "e2df4680-d6d0-4942-b2db-dbbbe48dc30b",
+            "name": "title",
+            "optional": false,
+            "array": false,
+            "key": false,
+            "defaultValue": null,
+            "type": "string"
+          },
+          {
+            "id": "7dfbcea4-d8bb-43da-a76f-c09a02e6ea17",
+            "name": "description",
+            "optional": true,
+            "array": false,
+            "key": false,
+            "defaultValue": null,
+            "type": "string"
+          }
+        ],
+        "children": []
+      },
+      {
+        "name": "Knowledge",
+        "id": "11f6659f-4e05-43d8-b62f-dce0542e76ec",
+        "hasDatabaseCollection": true,
+        "properties": [
+          {
+            "id": "6898c4cb-3ff2-452b-904d-2d0ae63ac8e9",
+            "name": "title",
+            "optional": false,
+            "array": false,
+            "key": false,
+            "defaultValue": null,
+            "type": "string"
+          },
+          {
+            "id": "74228a5b-16b5-4547-92df-97fcc7a39325",
+            "name": "createdAt",
+            "optional": false,
+            "array": false,
+            "key": false,
+            "defaultValue": null,
+            "type": "Date"
+          },
+          {
+            "id": "7b020f11-f5a6-4b70-a1a4-881d932da746",
+            "name": "updatedAt",
+            "optional": false,
+            "array": false,
+            "key": false,
+            "defaultValue": null,
+            "type": "Date"
+          }
+        ],
+        "children": []
+      },
+      {
+        "name": "HabitProgress",
+        "id": "f6fb1f53-175e-4fc0-ba90-e7e5b8d6c863",
+        "hasDatabaseCollection": true,
+        "properties": [
+          {
+            "id": "8f4775f5-e5fa-41ee-bf85-97b579a62bf0",
+            "name": "habit",
+            "optional": false,
+            "array": false,
+            "key": false,
+            "defaultValue": null,
+            "type": "fdf2106b-fffd-4e53-8e3a-b0dc001e844f"
+          }
+        ],
+        "children": []
+      },
+      {
+        "name": "RecurringTime",
+        "id": "71d22af8-ce46-44a4-ad98-01571ae6b01e",
+        "hasDatabaseCollection": true,
+        "properties": [
+          {
+            "id": "2919be29-20c5-4802-8022-b2eeb5117f4e",
+            "name": "hour",
+            "optional": false,
+            "array": false,
+            "key": false,
+            "defaultValue": null,
+            "type": "int"
+          },
+          {
+            "id": "0aa6ba88-ac38-4492-b3b7-9f673345ab37",
+            "name": "minute",
+            "optional": false,
+            "array": false,
+            "key": false,
+            "defaultValue": null,
+            "type": "int"
+          },
+          {
+            "id": "07667edf-7d0f-425d-83f1-c539934253c1",
+            "name": "nthDay",
+            "optional": false,
+            "array": false,
+            "key": false,
+            "defaultValue": null,
+            "type": "int"
+          },
+          {
+            "id": "a9d7d91f-96c8-4206-b940-891cb7ce4a4a",
+            "name": "start",
+            "optional": false,
+            "array": false,
+            "key": false,
+            "defaultValue": null,
+            "type": "Date"
+          },
+          {
+            "id": "0937fe15-28ee-4c27-8641-e724ad87209a",
+            "name": "duration",
+            "optional": false,
+            "array": false,
+            "key": false,
+            "defaultValue": null,
+            "type": "int"
+          }
+        ],
+        "children": []
+      },
+      {
+        "name": "DailyGoal",
+        "id": "d814df21-779c-41f7-b6f7-0644c1dd3200",
+        "hasDatabaseCollection": true,
+        "properties": [
+          {
+            "id": "441d4740-bc26-4fec-8208-d09525b98950",
+            "name": "name",
+            "optional": false,
+            "array": false,
+            "key": false,
+            "defaultValue": null,
+            "type": "string"
+          },
+          {
+            "id": "a67881ba-2ef5-4289-b5b6-127378cad261",
+            "name": "description",
+            "optional": true,
+            "array": false,
+            "key": false,
+            "defaultValue": null,
+            "type": "string"
+          },
+          {
+            "id": "56567474-dff9-4728-9fbf-6aec036a5c09",
+            "name": "goal",
+            "optional": false,
+            "array": false,
+            "key": false,
+            "defaultValue": null,
+            "type": "int"
+          }
+        ],
+        "children": []
+      },
+      {
+        "name": "GoalLog",
+        "id": "1b86fe44-77b4-497a-9413-417ca075b0d2",
+        "hasDatabaseCollection": true,
+        "properties": [
+          {
+            "id": "d7adbb45-9e45-4867-b28b-f67adccee1ed",
+            "name": "goal",
+            "optional": false,
+            "array": false,
+            "key": false,
+            "defaultValue": null,
+            "type": "d814df21-779c-41f7-b6f7-0644c1dd3200"
+          },
+          {
+            "id": "698d2659-fad3-42af-8be5-351b6aab18f4",
+            "name": "date",
+            "optional": false,
+            "array": false,
+            "key": false,
+            "defaultValue": null,
+            "type": "Date"
+          },
+          {
+            "id": "ca1f9ff7-8cd9-4812-b2fe-73ff24ffd723",
+            "name": "state",
+            "optional": false,
+            "array": false,
+            "key": false,
+            "defaultValue": null,
+            "type": "int"
+          }
+        ],
+        "children": []
+      }
+    ]
+  }
+}
