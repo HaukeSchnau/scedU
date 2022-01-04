@@ -1,9 +1,14 @@
+import 'package:mobx/mobx.dart';
 import '../gen/basic_habit.dart';
 import '../model/location.dart';
 import '../model/cortex.dart';
   
-class Habit extends BasicHabit {
-  Habit(
+part 'habit.g.dart';
+
+class Habit = _Habit with _$Habit;
+
+abstract class _Habit extends BasicHabit with Store {
+  _Habit(
       {required double frequencyDays,
       required double goal,
       required String name,
@@ -12,5 +17,6 @@ class Habit extends BasicHabit {
       Cortex? category,
       required String id}) : super(frequencyDays: frequencyDays, goal: goal, name: name, description: description, location: location, category: category, id: id);
 
-  Habit.fromJson(Map<String, dynamic> json) : super.fromJson(json);
+  // ignore: unused_element
+  _Habit.fromJson(Map<String, dynamic> json) : super.fromJson(json);
 }

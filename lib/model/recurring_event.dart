@@ -4,8 +4,12 @@ import '../model/recurring_time.dart';
 import '../model/location.dart';
 import '../model/cortex.dart';
   
-class RecurringEvent extends BasicRecurringEvent {
-  RecurringEvent(
+part 'recurring_event.g.dart';
+
+class RecurringEvent = _RecurringEvent with _$RecurringEvent;
+
+abstract class _RecurringEvent extends BasicRecurringEvent with Store {
+  _RecurringEvent(
       {required ObservableList<RecurringTime> times,
       required String name,
       String? description,
@@ -13,5 +17,6 @@ class RecurringEvent extends BasicRecurringEvent {
       Cortex? category,
       required String id}) : super(times: times, name: name, description: description, location: location, category: category, id: id);
 
-  RecurringEvent.fromJson(Map<String, dynamic> json) : super.fromJson(json);
+  // ignore: unused_element
+  _RecurringEvent.fromJson(Map<String, dynamic> json) : super.fromJson(json);
 }

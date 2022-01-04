@@ -4,8 +4,12 @@ import '../model/task.dart';
 import '../model/location.dart';
 import '../model/cortex.dart';
   
-class Project extends BasicProject {
-  Project(
+part 'project.g.dart';
+
+class Project = _Project with _$Project;
+
+abstract class _Project extends BasicProject with Store {
+  _Project(
       {required ObservableList<Task> tasks,
       DateTime? deadline,
       required String name,
@@ -14,5 +18,6 @@ class Project extends BasicProject {
       Cortex? category,
       required String id}) : super(tasks: tasks, deadline: deadline, name: name, description: description, location: location, category: category, id: id);
 
-  Project.fromJson(Map<String, dynamic> json) : super.fromJson(json);
+  // ignore: unused_element
+  _Project.fromJson(Map<String, dynamic> json) : super.fromJson(json);
 }
