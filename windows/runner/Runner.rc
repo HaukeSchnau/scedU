@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "de.haukeschnau" "\0"
-            VALUE "FileDescription", "A new Flutter project." "\0"
+            VALUE "CompanyName", "Hauke Schnau" "\0"
+            VALUE "FileDescription", "scedU Daily Life Planner" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "scedu" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2021 de.haukeschnau. All rights reserved." "\0"
+            VALUE "InternalName", "scedU" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2021 Hauke Schnau All rights reserved." "\0"
             VALUE "OriginalFilename", "scedu.exe" "\0"
-            VALUE "ProductName", "scedu" "\0"
+            VALUE "ProductName", "scedU" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
