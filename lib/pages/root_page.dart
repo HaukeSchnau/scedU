@@ -50,7 +50,9 @@ class _RootPageState extends State<RootPage> {
               (pageData) => SingleChildScrollView(
                   child: SafeArea(
                       child: Padding(
-                padding: const EdgeInsets.only(bottom: 32.0),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 36) +
+                        const EdgeInsets.only(bottom: 32),
                 child: pageData.page,
               ))),
             )

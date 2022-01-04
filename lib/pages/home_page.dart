@@ -11,25 +11,28 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 36),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(getGreeting(name: "Hauke"),
-              style: Theme.of(context).textTheme.headline1),
-          const SizedBox(height: 12),
-          CurrentActivity(Activity(
-            plannedStart: DateTime(2022, 1, 4, 12),
-            plannedDuration: 120,
-            flexible: true,
-            name: "Arbeiten",
-            id: "id",
-            description: "Test",
-            checkedIn: DateTime(2022, 1, 4, 12, 30),
-          )),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(getGreeting(name: "Hauke"),
+            style: Theme.of(context).textTheme.headline1),
+        const SizedBox(height: 12),
+        CurrentActivity(Activity(
+          plannedStart: DateTime(2022, 1, 4, 12),
+          plannedDuration: 120,
+          flexible: true,
+          name: "Arbeiten",
+          id: "id",
+          description: "Test",
+          checkedIn: DateTime(2022, 1, 4, 12, 30),
+        )),
+        const SizedBox(height: 48),
+        const Agenda(),
+        const SizedBox(height: 48),
+        const Projects(),
+        const SizedBox(height: 48),
+        const Habits()
+      ],
     );
   }
 }
