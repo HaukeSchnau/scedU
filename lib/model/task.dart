@@ -1,6 +1,5 @@
 import 'package:mobx/mobx.dart';
 import '../gen/basic_task.dart';
-import '../model/task.dart';
   
 class Task extends BasicTask {
   Task(

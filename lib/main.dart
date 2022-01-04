@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scedu/pages/root_page.dart';
 import 'package:scedu/theme.dart';
 
 void main() {
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'scedU',
       theme: theme,
+      home: const RootPage(),
     );
   }
 }
