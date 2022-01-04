@@ -36,10 +36,19 @@ class NavBar extends StatelessWidget {
         .toList();
     items.insert(pageStore.pages.length >> 1, _buildMiddleTabItem());
 
-    return BottomAppBar(
-      shape: const CircularNotchedRectangle(),
-      child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround, children: items),
+    return Container(
+      decoration: const BoxDecoration(boxShadow: [
+        BoxShadow(
+            color: Color.fromRGBO(0, 0, 0, .1),
+            offset: Offset(0, -4),
+            blurRadius: 16)
+      ]),
+      child: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        clipBehavior: Clip.antiAlias,
+        child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround, children: items),
+      ),
     );
   }
 

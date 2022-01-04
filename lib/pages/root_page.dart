@@ -44,7 +44,17 @@ class _RootPageState extends State<RootPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
-        children: pageStore.pages.map((pageData) => pageData.page).toList(),
+        physics: const NeverScrollableScrollPhysics(),
+        children: pageStore.pages
+            .map(
+              (pageData) => SingleChildScrollView(
+                  child: SafeArea(
+                      child: Padding(
+                padding: const EdgeInsets.only(bottom: 32.0),
+                child: pageData.page,
+              ))),
+            )
+            .toList(),
         controller: pageController,
         onPageChanged: pageStore.setCurrentPage,
       ),
@@ -53,11 +63,11 @@ class _RootPageState extends State<RootPage> {
         padding: const EdgeInsets.all(2.0),
         child: FloatingActionButton(
           onPressed: () {},
-          tooltip: 'Increment',
           child: const Icon(CupertinoIcons.add),
           elevation: 2.0,
         ),
       ),
+      extendBody: true,
       bottomNavigationBar: NavBar(pageStore),
     );
   }
