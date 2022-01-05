@@ -30,7 +30,8 @@ class _RootPageState extends State<RootPage> {
       PageData(
           label: "Kalender",
           icon: CupertinoIcons.calendar,
-          page: const CalendarPage()),
+          page: const CalendarPage(),
+          scrollable: false),
       PageData(
           label: "Ziele", icon: CupertinoIcons.rocket, page: const GoalsPage()),
       PageData(
@@ -45,18 +46,19 @@ class _RootPageState extends State<RootPage> {
     return Scaffold(
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
-        children: pageStore.pages
-            .map(
-              (pageData) => SingleChildScrollView(
-                  child: SafeArea(
-                      child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 24, vertical: 36) +
-                        const EdgeInsets.only(bottom: 32),
-                child: pageData.page,
-              ))),
-            )
-            .toList(),
+        children: pageStore.pages.map(
+          (pageData) {
+            final pageView = SafeArea(
+                child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 36),
+              child: pageData.page,
+            ));
+            if (pageData.scrollable) {
+              return SingleChildScrollView(child: pageView);
+            }
+            return pageView;
+          },
+        ).toList(),
         controller: pageController,
         onPageChanged: pageStore.setCurrentPage,
       ),
