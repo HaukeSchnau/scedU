@@ -12,6 +12,7 @@ class CalendarPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text("Kalender", style: textTheme.headline1),
+        const SizedBox(height: 12),
         const Expanded(child: Calendar(2022, 1))
       ],
     );

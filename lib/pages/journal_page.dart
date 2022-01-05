@@ -5,6 +5,14 @@ class JournalPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    final textTheme = Theme.of(context).textTheme;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text("Logbuch", style: textTheme.headline1),
+        const SizedBox(height: 12),
+      ],
+    );
   }
 }
