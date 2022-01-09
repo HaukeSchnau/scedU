@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:scedu/model/page_data.dart';
+import 'package:scedu/util/date.dart';
 
 part 'page_store.g.dart';
 
@@ -15,6 +16,12 @@ abstract class _PageStore with Store {
 
   @observable
   int currentPageIndex = 0;
+
+  @observable
+  DateTime selectedDate = DateTime.now().toDate();
+
+  @observable
+  DateTime selectedMonth = DateTime.now().toMonth();
 
   _PageStore(this.pages, this.controller);
 

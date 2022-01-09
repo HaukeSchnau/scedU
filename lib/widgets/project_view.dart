@@ -41,7 +41,7 @@ class ProjectView extends StatelessWidget {
                   const SizedBox(height: 8),
                   Text(
                       "${project.numCompleted} / ${project.tasks.length} Aufgaben erledigt",
-                      style: Theme.of(context).textTheme.subtitle1),
+                      style: Theme.of(context).textTheme.subtitle2),
                 ],
               )
             ],

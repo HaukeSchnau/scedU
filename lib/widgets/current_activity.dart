@@ -25,7 +25,7 @@ class CurrentActivity extends StatelessWidget {
         child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Aktuelle Tätigkeit", style: textTheme.subtitle1),
+        Text("Aktuelle Tätigkeit", style: textTheme.subtitle2),
         Text(activity.name, style: textTheme.headline2),
         if (description != null) Text(description, style: textTheme.bodyText1),
         Row(
@@ -42,7 +42,7 @@ class CurrentActivity extends StatelessWidget {
               }
             }),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () => activity.checkOut(),
               child: const Text("Auschecken"),
               style: ButtonStyle(
                   backgroundColor:

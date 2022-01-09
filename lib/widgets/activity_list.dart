@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:scedu/model/activity.dart';
@@ -17,20 +19,23 @@ class ActivityList extends StatelessWidget {
       return ListView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          itemCount: activities.length * 2 - 1,
-          itemBuilder: (context, index) => Padding(
+          itemCount: max(activities.length * 2 - 1, 0),
+          itemBuilder: (context, index) {
+            final child = index % 2 == 0
+                ? ActivityView(
+                    activities[index ~/ 2],
+                    isNextUp: index == nextUpIndex,
+                  )
+                : FreeTimeView(
+                    start: activities[index ~/ 2].plannedEnd,
+                    duration: activities[index ~/ 2 + 1]
+                        .plannedStart
+                        .difference(activities[index ~/ 2].plannedEnd));
+
+            return Padding(
                 padding: EdgeInsets.only(top: index == 0 ? 0.0 : 8.0),
-                child: index % 2 == 0
-                    ? ActivityView(
-                        activities[index ~/ 2],
-                        isNextUp: index == nextUpIndex,
-                      )
-                    : FreeTimeView(
-                        start: activities[index ~/ 2].plannedEnd,
-                        duration: activities[index ~/ 2 + 1]
-                            .plannedStart
-                            .difference(activities[index ~/ 2].plannedEnd)),
-              ));
+                child: child);
+          });
     });
   }
 }

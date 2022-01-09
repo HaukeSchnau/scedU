@@ -37,7 +37,7 @@
       {
         "name": "AbstractEvent",
         "id": "d7d64193-dcd0-491a-a3eb-5e5f4cbd9ded",
-        "hasDatabaseCollection": true,
+        "hasDatabaseCollection": false,
         "properties": [
           {
             "id": "8b200355-d927-43ac-aed6-9a54d77298d4",
@@ -90,6 +90,15 @@
                 "key": false,
                 "defaultValue": null,
                 "type": "71d22af8-ce46-44a4-ad98-01571ae6b01e"
+              },
+              {
+                "id": "ded91c03-07db-4d85-9f62-ae53995a491a",
+                "name": "flexible",
+                "optional": false,
+                "array": false,
+                "key": false,
+                "defaultValue": null,
+                "type": "boolean"
               }
             ],
             "children": []
@@ -222,7 +231,7 @@
       {
         "name": "Location",
         "id": "1a3fe2bc-c877-47bc-9a3e-b7a8befe2ee3",
-        "hasDatabaseCollection": true,
+        "hasDatabaseCollection": false,
         "properties": [
           {
             "id": "b4506194-35bd-404f-96e4-002f71a95569",
@@ -370,26 +379,8 @@
       {
         "name": "RecurringTime",
         "id": "71d22af8-ce46-44a4-ad98-01571ae6b01e",
-        "hasDatabaseCollection": true,
+        "hasDatabaseCollection": false,
         "properties": [
-          {
-            "id": "2919be29-20c5-4802-8022-b2eeb5117f4e",
-            "name": "hour",
-            "optional": false,
-            "array": false,
-            "key": false,
-            "defaultValue": null,
-            "type": "int"
-          },
-          {
-            "id": "0aa6ba88-ac38-4492-b3b7-9f673345ab37",
-            "name": "minute",
-            "optional": false,
-            "array": false,
-            "key": false,
-            "defaultValue": null,
-            "type": "int"
-          },
           {
             "id": "07667edf-7d0f-425d-83f1-c539934253c1",
             "name": "nthDay",

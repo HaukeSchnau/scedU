@@ -11,6 +11,14 @@ class ActivityView extends StatelessWidget {
   const ActivityView(this.activity, {Key? key, required this.isNextUp})
       : super(key: key);
 
+  void checkIn() {
+    activity.checkIn();
+  }
+
+  void checkOut() {
+    activity.checkOut();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Observer(
@@ -29,10 +37,10 @@ class ActivityView extends StatelessWidget {
                         color: dynamicPixie),
                   if (isNextUp && activity.checkedIn == null)
                     ButtonAction(
-                        handler: () {}, label: "Einchecken", color: green),
+                        handler: checkIn, label: "Einchecken", color: green),
                   if (isNextUp && activity.checkedIn != null)
                     ButtonAction(
-                        handler: () {},
+                        handler: checkOut,
                         label: "Auschecken",
                         color: strawberryFix)
                 ]));

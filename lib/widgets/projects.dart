@@ -1,30 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mobx/mobx.dart';
-import 'package:scedu/model/project.dart';
-import 'package:scedu/model/task.dart';
+import 'package:scedu/store/root_store.dart';
 import 'package:scedu/widgets/project_view.dart';
-
-final List<Project> projects = [
-  Project(
-      id: "aefwfasd",
-      name: "scedU Mobile App",
-      description:
-          "asdfkjsadlfa skdlf jas kdfklasjdfklslkaf lkdkjla klkajlklf lkaskl kl skja kj ",
-      tasks: ObservableList.of([
-        Task(
-            done: false,
-            title: "TAsedf",
-            subtasks: ObservableList(),
-            id: "asdf"),
-        Task(
-            done: true, title: "TAsedf", subtasks: ObservableList(), id: "asdf")
-      ])),
-  Project(
-      id: "aefwfasdasd",
-      name: "scedU Mobile App 2",
-      tasks: ObservableList.of([]),
-      deadline: DateTime(2022, 1, 6))
-];
 
 class Projects extends StatelessWidget {
   const Projects({Key? key}) : super(key: key);
@@ -34,6 +10,10 @@ class Projects extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final heading =
         Text("Deine aktuellen Projekte:", style: textTheme.headline4);
+    final projects = rootStore.projectsStore.projects;
+
+    if (projects.isEmpty) return Container();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,

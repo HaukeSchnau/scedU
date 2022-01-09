@@ -18,8 +18,8 @@ class GoalView extends StatelessWidget {
           color: dynamicPixie, borderRadius: BorderRadius.circular(99999)),
     );
     final heading = Text(goal.name, style: textTheme.headline3);
-    final percentView = Text("72%", style: textTheme.subtitle1);
-    final outOfView = Text("1728/${goal.goal}", style: textTheme.subtitle1);
+    final percentView = Text("72%", style: textTheme.subtitle2);
+    final outOfView = Text("1728/${goal.goal}", style: textTheme.subtitle2);
     final editIcon = IconButton(
       icon: const Icon(CupertinoIcons.pen),
       onPressed: () {},

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:intl/intl.dart';
+import 'package:scedu/store/date_store.dart';
 import 'package:scedu/util/time.dart';
 import 'package:scedu/widgets/surface.dart';
+import 'package:scedu/widgets/time_indicator.dart';
 
 class ButtonAction {
   final String label;
@@ -20,6 +23,7 @@ class BasicActivityView extends StatelessWidget {
   final String title;
   final String? description;
   final List<ButtonAction> actions;
+  final VoidCallback? onTap;
 
   const BasicActivityView(
       {Key? key,
@@ -29,6 +33,7 @@ class BasicActivityView extends StatelessWidget {
       this.sideColor,
       required this.title,
       this.description,
+      this.onTap,
       required this.actions})
       : super(key: key);
 
@@ -52,7 +57,7 @@ class BasicActivityView extends StatelessWidget {
                     backgroundColor: MaterialStateProperty.all(action.color))))
             .toList());
 
-    final item = Row(
+    Widget item = Row(
       mainAxisSize: MainAxisSize.max,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -69,6 +74,7 @@ class BasicActivityView extends StatelessWidget {
         Expanded(
           child: Surface(
               padding: padding,
+              onTap: onTap,
               sideColor: sideColor,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -91,18 +97,29 @@ class BasicActivityView extends StatelessWidget {
       ],
     );
 
-    if (greyedOut) {
-      return Stack(
-        children: [
-          Opacity(opacity: 0.4, child: item),
-          Align(
-            alignment: Alignment.centerRight,
-            child: Padding(padding: padding, child: buttons),
-          )
-        ],
-      );
-    }
+    return Observer(builder: (_) {
+      DateTime now = dateStore.currentDate;
+      bool isCurrent = now.isAfter(start) && now.isBefore(start.add(duration));
+      if (isCurrent) {
+        double percent = now.difference(start).inMinutes / duration.inMinutes;
+        item = Stack(
+          children: [Positioned.fill(child: TimeIndicator(percent)), item],
+        );
+      }
 
-    return item;
+      if (greyedOut) {
+        return Stack(
+          children: [
+            Opacity(opacity: 0.4, child: item),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Padding(padding: padding, child: buttons),
+            )
+          ],
+        );
+      }
+
+      return item;
+    });
   }
 }

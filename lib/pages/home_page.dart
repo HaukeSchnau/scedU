@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:scedu/model/activity.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:scedu/store/root_store.dart';
 import 'package:scedu/util/greeting.dart';
 import 'package:scedu/widgets/agenda.dart';
 import 'package:scedu/widgets/current_activity.dart';
@@ -17,20 +18,16 @@ class HomePage extends StatelessWidget {
         Text(getGreeting(name: "Hauke"),
             style: Theme.of(context).textTheme.headline1),
         const SizedBox(height: 12),
-        CurrentActivity(Activity(
-          plannedStart: DateTime(2022, 1, 4, 12),
-          plannedDuration: 120,
-          flexible: true,
-          name: "Arbeiten",
-          id: "id",
-          description: "Test",
-          checkedIn: DateTime(2022, 1, 4, 12, 30),
-        )),
-        const SizedBox(height: 48),
+        Observer(builder: (_) {
+          return CurrentActivity(rootStore.agendaStore.currentActivity);
+        }),
+        if (rootStore.agendaStore.currentActivity != null)
+          const SizedBox(height: 48),
         const Agenda(),
-        const SizedBox(height: 48),
+        if (rootStore.projectsStore.projects.isNotEmpty)
+          const SizedBox(height: 48),
         const Projects(),
-        const SizedBox(height: 48),
+        if (rootStore.habitsStore.habits.isNotEmpty) const SizedBox(height: 48),
         const Habits()
       ],
     );

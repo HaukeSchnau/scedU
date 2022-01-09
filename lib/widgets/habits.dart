@@ -1,44 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:scedu/model/habit.dart';
+import 'package:scedu/store/root_store.dart';
 import 'package:scedu/widgets/habit_view.dart';
-
-final List<Habit> habits = [
-  Habit(
-    frequencyDays: 1,
-    goal: 12,
-    name: "Laufen",
-    description: "5km in <30 min",
-    id: 'asdf',
-  ),
-  Habit(
-    frequencyDays: 0.5,
-    goal: 12,
-    name: "Laufen",
-    description: "5km in <30 min",
-    id: 'asdf',
-  ),
-  Habit(
-    frequencyDays: 2,
-    goal: 12,
-    name: "Laufen",
-    description: "5km in <30 min",
-    id: 'asdf',
-  ),
-  Habit(
-    frequencyDays: 14,
-    goal: 12,
-    name: "Laufen",
-    description: "5km in <30 min",
-    id: 'asdf',
-  ),
-  Habit(
-    frequencyDays: 10,
-    goal: 12,
-    name: "Laufen",
-    description: "5km in <30 min",
-    id: 'asdf',
-  ),
-];
 
 class Habits extends StatelessWidget {
   const Habits({Key? key}) : super(key: key);
@@ -47,6 +9,10 @@ class Habits extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final heading = Text("Deine Habits:", style: textTheme.headline4);
+    final habits = rootStore.habitsStore.habits;
+
+    if (habits.isEmpty) return Container();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

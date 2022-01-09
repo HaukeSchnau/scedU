@@ -60,4 +60,14 @@ abstract class _Activity extends BasicActivity with Store {
   DateTime get plannedEnd {
     return plannedStart.add(Duration(minutes: plannedDuration));
   }
+
+  @action
+  checkIn() {
+    checkedIn = DateTime.now();
+  }
+
+  @action
+  checkOut() {
+    checkedOut = DateTime.now();
+  }
 }

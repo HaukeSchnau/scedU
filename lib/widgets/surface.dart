@@ -6,17 +6,25 @@ class Surface extends StatelessWidget {
   final Color? sideColor;
   final borderRadius = 8.0;
   final sideWidth = 8.0;
+  final VoidCallback? onTap;
 
   const Surface(
       {Key? key,
       required this.child,
       this.padding = const EdgeInsets.all(16),
-      this.sideColor})
+      this.sideColor,
+      this.onTap})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final sideColor = this.sideColor;
+    final item = onTap == null
+        ? child
+        : Material(
+            color: Colors.transparent,
+            child: InkWell(onTap: onTap, child: child),
+          );
 
     if (sideColor != null) {
       return Container(
@@ -29,14 +37,15 @@ class Surface extends StatelessWidget {
               decoration: BoxDecoration(
                   border: Border(
                       left: BorderSide(color: sideColor, width: sideWidth))),
-              child: child));
+              child: item));
     }
 
     return Container(
+        clipBehavior: Clip.antiAlias,
         padding: padding,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(borderRadius),
             color: Theme.of(context).colorScheme.surface),
-        child: child);
+        child: item);
   }
 }

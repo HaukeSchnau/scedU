@@ -6,7 +6,11 @@ import 'package:scedu/pages/goals_page.dart';
 import 'package:scedu/pages/home_page.dart';
 import 'package:scedu/pages/journal_page.dart';
 import 'package:scedu/store/page_store.dart';
+import 'package:scedu/widgets/modals/add_modal.dart';
+import 'package:scedu/widgets/modals/custom_modal_wrapper.dart';
 import 'package:scedu/widgets/nav_bar.dart';
+
+late PageStore pageStore;
 
 class RootPage extends StatefulWidget {
   const RootPage({Key? key}) : super(key: key);
@@ -16,7 +20,6 @@ class RootPage extends StatefulWidget {
 }
 
 class _RootPageState extends State<RootPage> {
-  late PageStore pageStore;
   final pageController = PageController();
 
   @override
@@ -66,7 +69,7 @@ class _RootPageState extends State<RootPage> {
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(2.0),
         child: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () => openCustomModal(context, const AddModal()),
           child: const Icon(CupertinoIcons.add),
           elevation: 2.0,
         ),

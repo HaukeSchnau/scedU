@@ -64,4 +64,21 @@ final theme = ThemeData(
         backgroundColor: colorScheme.surface,
         selectedItemColor: colorScheme.onSurface,
         unselectedItemColor: colorScheme.onSurface.withAlpha(102)),
-    elevatedButtonTheme: elevatedButtonTheme);
+    elevatedButtonTheme: elevatedButtonTheme,
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: onSurface,
+      contentPadding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      border: OutlineInputBorder(
+        borderSide: const BorderSide(color: Colors.transparent, width: 0),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderSide: const BorderSide(color: Colors.transparent, width: 0),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: const BorderSide(color: Colors.transparent, width: 0),
+        borderRadius: BorderRadius.circular(16),
+      ),
+    ));
