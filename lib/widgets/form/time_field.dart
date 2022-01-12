@@ -18,7 +18,7 @@ class _TimeFieldState extends State<TimeField> {
     DateTime date = DateTime(
         1, 1, 1, widget.controller.value.hour, widget.controller.value.minute);
     textController.value =
-        TextEditingValue(text: DateFormat("HH:mm").format(date));
+        TextEditingValue(text: DateFormat("HH:mm 'Uhr'").format(date));
   }
 
   @override

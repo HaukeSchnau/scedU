@@ -26,6 +26,20 @@ Future<void> saveEntity(Entity entity) async {
   await store.record(entity.id).add(_db, entity.toJson());
 }
 
+Future<void> updateEntity(Entity entity) async {
+  final type = entity.runtimeType.toString();
+
+  final store = stringMapStoreFactory.store(type);
+  await store.record(entity.id).update(_db, entity.toJson());
+}
+
+Future<void> deleteEntity(Entity entity) async {
+  final type = entity.runtimeType.toString();
+
+  final store = stringMapStoreFactory.store(type);
+  await store.record(entity.id).delete(_db);
+}
+
 Future<Iterable<T>> loadEntities<T extends Entity>() {
   final type = T.toString();
 

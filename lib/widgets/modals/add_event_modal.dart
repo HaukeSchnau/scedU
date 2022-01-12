@@ -2,11 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:scedu/db.dart';
+import 'package:scedu/model/abstract_event.dart';
 import 'package:scedu/model/activity.dart';
 import 'package:scedu/model/recurring_event.dart';
 import 'package:scedu/model/recurring_time.dart';
 import 'package:scedu/pages/root_page.dart';
+import 'package:scedu/store/agenda_store.dart';
 import 'package:scedu/store/root_store.dart';
+import 'package:scedu/theme.dart';
 import 'package:scedu/util/date.dart';
 import 'package:scedu/util/indexed_iterable.dart';
 import 'package:scedu/widgets/form/date_controller.dart';
@@ -22,7 +25,9 @@ import 'package:uuid/uuid.dart';
 enum EventType { once, recurring }
 
 class AddEventModal extends StatefulWidget {
-  const AddEventModal({Key? key}) : super(key: key);
+  final AbstractEvent? activity;
+
+  const AddEventModal({Key? key, this.activity}) : super(key: key);
 
   @override
   State<AddEventModal> createState() => _AddEventModalState();
@@ -37,41 +42,97 @@ class _AddEventModalState extends State<AddEventModal> {
   bool isFlexible = false;
   List<RecurringTime> times = [];
 
+  @override
+  void initState() {
+    super.initState();
+    final existingActivity = widget.activity;
+    if (existingActivity != null) {
+      title.text = existingActivity.name;
+      if (existingActivity is RecurringEvent) {
+        type = EventType.recurring;
+        times = existingActivity.times;
+        isFlexible = existingActivity.flexible;
+        if (times.isNotEmpty) {
+          start.value = times[0].start;
+          duration.value = Duration(minutes: times[0].duration);
+        }
+      } else if (existingActivity is Activity) {
+        type = EventType.once;
+        start.value = existingActivity.plannedStart;
+        duration.value = Duration(minutes: existingActivity.plannedDuration);
+        isFlexible = existingActivity.flexible;
+      }
+    }
+  }
+
+  Future<void> onDelete() async {
+    final existingActivity = widget.activity;
+    if (existingActivity != null) {
+      if (existingActivity is RecurringEvent) {
+        rootStore.agendaStore.recurringEvents
+            .removeWhere((element) => element.id == existingActivity.id);
+      } else if (existingActivity is Activity) {
+        rootStore.agendaStore.activities
+            .removeWhere((element) => element.id == existingActivity.id);
+      }
+      await deleteEntity(existingActivity);
+    }
+    Navigator.pop(context);
+  }
+
   Future<void> onSave() async {
+    final id = widget.activity?.id;
     if (type == EventType.once) {
       final event = Activity(
           flexible: isFlexible,
-          id: const Uuid().v4(),
+          id: id ?? const Uuid().v4(),
           name: title.text,
           plannedDuration: duration.value.inMinutes,
           plannedStart: start.value);
-      await saveEntity(event);
+      if (id == null) {
+        await saveEntity(event);
+      } else {
+        await updateEntity(event);
+      }
+      rootStore.agendaStore.activities
+          .removeWhere((element) => element.id == id);
       rootStore.agendaStore.activities.add(event);
     } else {
       final event = RecurringEvent(
-          id: const Uuid().v4(),
+          id: id ?? const Uuid().v4(),
           name: title.text,
           times: ObservableList.of(times),
           flexible: isFlexible);
-      await saveEntity(event);
+      if (id == null) {
+        await saveEntity(event);
+      } else {
+        await updateEntity(event);
+      }
+      rootStore.agendaStore.recurringEvents
+          .removeWhere((element) => element.id == id);
       rootStore.agendaStore.recurringEvents.add(event);
     }
+
     Navigator.pop(context);
   }
 
   Future<void> openAddTimeModal() async {
     showDialog(
       context: context,
-      builder: (context) => Center(
-        child: Padding(
-          padding: const EdgeInsets.all(64.0),
-          child: Material(
-            color: Colors.transparent,
-            child: Surface(
-              child: RecurringTimeForm(
-                onSubmit: (value) => setState(() {
-                  times.add(value);
-                }),
+      builder: (context) => Container(
+        padding: MediaQuery.of(context).viewInsets,
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 48.0),
+            child: Material(
+              color: Colors.transparent,
+              child: Surface(
+                padding: const EdgeInsets.all(24),
+                child: RecurringTimeForm(
+                  onSubmit: (value) => setState(() {
+                    times.add(value);
+                  }),
+                ),
               ),
             ),
           ),
@@ -121,7 +182,7 @@ class _AddEventModalState extends State<AddEventModal> {
                     onPressed: () => setState(() {
                           times.removeAt(i);
                         }),
-                    icon: Icon(CupertinoIcons.xmark)),
+                    icon: const Icon(CupertinoIcons.xmark)),
               ),
             )),
         ElevatedButton(
@@ -142,7 +203,8 @@ class _AddEventModalState extends State<AddEventModal> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Neuer Termin", style: textTheme.headline2),
+          Text(widget.activity == null ? "Neuer Termin" : "Termin bearbeiten",
+              style: textTheme.headline2),
           const SizedBox(height: 16),
           Label(
             label: "Titel",
@@ -172,10 +234,19 @@ class _AddEventModalState extends State<AddEventModal> {
               if (value != null) isFlexible = value;
             }),
           ),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: ElevatedButton(
-                onPressed: onSave, child: const Text("Speichern")),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              if (widget.activity != null)
+                ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all(strawberryFix)),
+                    onPressed: onDelete,
+                    child: const Text("Löschen")),
+              const SizedBox(width: 16),
+              ElevatedButton(onPressed: onSave, child: const Text("Speichern")),
+            ],
           )
         ],
       ),

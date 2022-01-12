@@ -42,6 +42,7 @@ abstract class _RecurringEvent extends BasicRecurringEvent with Store {
       category: category,
       description: description,
       location: location,
+      original: this
     );
   }
 }

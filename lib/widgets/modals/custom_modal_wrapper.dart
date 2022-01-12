@@ -8,6 +8,7 @@ void openCustomModal(BuildContext context, Widget widget) {
     context: context,
     isScrollControlled: true,
     builder: (context) => Container(
+        padding: MediaQuery.of(context).viewInsets,
         clipBehavior: Clip.antiAlias,
         decoration: const BoxDecoration(
             color: surface,

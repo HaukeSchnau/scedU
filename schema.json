@@ -74,6 +74,15 @@
             "key": false,
             "defaultValue": null,
             "type": "ca93abf1-8c49-40c0-b978-681153dd5898"
+          },
+          {
+            "id": "cd50490a-1364-428c-9f51-4eb6682d3256",
+            "name": "original",
+            "optional": true,
+            "array": false,
+            "key": false,
+            "defaultValue": null,
+            "type": "d7d64193-dcd0-491a-a3eb-5e5f4cbd9ded"
           }
         ],
         "children": [
@@ -477,6 +486,41 @@
             "key": false,
             "defaultValue": null,
             "type": "int"
+          }
+        ],
+        "children": []
+      },
+      {
+        "name": "UserSettings",
+        "id": "aaf7bb91-3cfb-48a4-9cff-b832de2321df",
+        "hasDatabaseCollection": true,
+        "properties": [
+          {
+            "id": "5ea7fb5c-105a-45d9-8940-5e5b6feded38",
+            "name": "name",
+            "optional": false,
+            "array": false,
+            "key": false,
+            "defaultValue": null,
+            "type": "string"
+          },
+          {
+            "id": "5f397f2e-19b2-48a4-8f55-b2262bea6b24",
+            "name": "sleepTime",
+            "optional": false,
+            "array": false,
+            "key": false,
+            "defaultValue": null,
+            "type": "Date"
+          },
+          {
+            "id": "b62ab1bf-bee3-41a3-aecf-97be04ad7268",
+            "name": "sleepHours",
+            "optional": false,
+            "array": false,
+            "key": false,
+            "defaultValue": null,
+            "type": "double"
           }
         ],
         "children": []

@@ -3,6 +3,8 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:scedu/model/activity.dart';
 import 'package:scedu/theme.dart';
 import 'package:scedu/widgets/basic_activity_view.dart';
+import 'package:scedu/widgets/modals/add_event_modal.dart';
+import 'package:scedu/widgets/modals/custom_modal_wrapper.dart';
 
 class ActivityView extends StatelessWidget {
   final Activity activity;
@@ -23,6 +25,8 @@ class ActivityView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Observer(
         builder: (_) => BasicActivityView(
+                onTap: () => openCustomModal(context,
+                    AddEventModal(activity: activity.original ?? activity)),
                 greyedOut: activity.isDone,
                 start: activity.plannedStart,
                 duration: Duration(minutes: activity.plannedDuration),

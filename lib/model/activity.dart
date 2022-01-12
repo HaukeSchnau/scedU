@@ -1,4 +1,5 @@
 import 'package:mobx/mobx.dart';
+import 'package:scedu/model/abstract_event.dart';
 import 'package:scedu/store/date_store.dart';
 import '../gen/basic_activity.dart';
 import '../model/knowledge.dart';
@@ -22,7 +23,8 @@ abstract class _Activity extends BasicActivity with Store {
       String? description,
       Location? location,
       Cortex? category,
-      required String id})
+      required String id,
+      AbstractEvent? original})
       : super(
             plannedStart: plannedStart,
             plannedDuration: plannedDuration,
@@ -35,7 +37,8 @@ abstract class _Activity extends BasicActivity with Store {
             description: description,
             location: location,
             category: category,
-            id: id);
+            id: id,
+            original: original);
 
   // ignore: unused_element
   _Activity.fromJson(Map<String, dynamic> json) : super.fromJson(json);
